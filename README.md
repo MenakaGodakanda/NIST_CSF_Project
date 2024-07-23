@@ -3,7 +3,7 @@
 This project demonstrates the implementation of the NIST Cybersecurity Framework using open-source tools on Ubuntu.
 
 ## Overview
-<img width="1266" alt="Screenshot 2024-07-23 at 5 24 22 PM" src="https://github.com/user-attachments/assets/048d12fe-2da1-416d-b7bc-5c2facd05df0">
+<img width="1266" alt="Screenshot 2024-07-23 at 5 38 47 PM" src="https://github.com/user-attachments/assets/3a955ff3-a7cf-4c44-b387-97c73c16fd91">
 
 ### Explanation
 #### 1. Identify (Asset Management):
