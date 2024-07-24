@@ -74,8 +74,10 @@ sudo apt install snort
 ```
 python3 identify/asset_management.py
 ```
+![Screenshot 2024-07-23 153059](https://github.com/user-attachments/assets/4d10cc29-f664-454c-a413-bef543b208f4)
 
-- This script will create an `assets.json` file with the identified hosts.
+- This script will create an `assets.json` file with the identified hosts.<br>
+![Screenshot 2024-07-24 040649](https://github.com/user-attachments/assets/8fccb66f-5f41-4643-ab9c-a1d39dd6f3eb)
 
 ## Protect
 
@@ -86,6 +88,7 @@ python3 identify/asset_management.py
 ```
 python3 protect/access_control.py
 ```
+![Screenshot 2024-07-23 153307](https://github.com/user-attachments/assets/86774ba2-0351-4aa6-81bf-34df8ab590e6)
 
 ### Data Protection
 
@@ -128,6 +131,7 @@ python3 protect/access_control.py
   ```
   python3 protect/data_encryption.py
   ```
+![Screenshot 2024-07-23 154259 - Copy](https://github.com/user-attachments/assets/a84135b7-e9cd-44e3-bef4-00f67699d447)
 
 ## Detect
 
@@ -194,6 +198,8 @@ xx - Snort configuration: `detect/snort.conf`
 ```
 python3 detect/monitor_logs.py
 ```
+![Screenshot 2024-07-23 160445 - Copy](https://github.com/user-attachments/assets/826d5e1b-ccb6-4ef2-816d-55d361a86153)
+
 - This script will keep checking for the log file until it exists and then proceed to monitor it. If Snort is correctly configured and running, the script will eventually detect the log file and start printing new alerts.
 
 
@@ -206,6 +212,7 @@ python3 detect/monitor_logs.py
 ```
 python3 respond/incident_response.py
 ```
+![Screenshot 2024-07-24 032656](https://github.com/user-attachments/assets/7210cfa2-dc0c-46c1-ba10-140c23c556a2)
 
 ## Recover
 
@@ -235,6 +242,7 @@ ls -l /home/data
 ```
 python3 recover/backup_restore.py
 ```
+![Screenshot 2024-07-23 160942](https://github.com/user-attachments/assets/f529f1c5-44b4-4565-aab4-4c179d610ab2)
 
 #### 3. Verifying the Backup and Restore
 1. Check the Backup Directory:
