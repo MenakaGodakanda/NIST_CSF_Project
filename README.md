@@ -217,7 +217,14 @@ python3 detect/monitor_logs.py
 ### Incident Response
 
 - Script: `respond/incident_response.py`
-- This script isolates affected machines by modifying `iptables` rules. Run the script:
+- This script isolates affected machines by modifying `iptables` rules.
+- Identify the IP address of affected machines and insert the below lines in the `incident_response.py` script.
+```
+ip_address = '192.168.1.7'    # IP address of affected machine
+isolate_machine(ip_address)
+print(f'Machine {ip_address} isolated')
+```
+- Run the script:
 ```
 python3 respond/incident_response.py
 ```
