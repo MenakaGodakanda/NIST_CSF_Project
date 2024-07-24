@@ -156,6 +156,8 @@ sudo nano /etc/snort/snort.conf
 ```
 output alert_fast: /var/log/snort/alert
 ```
+![Screenshot 2024-07-24 155237](https://github.com/user-attachments/assets/2dae2862-8a99-4e7e-bc66-73b9523a20e9)
+
 #### 3. Create and Set Permissions for Log Directory:
 - Ensure the directory /var/log/snort exists and has the correct permissions:
 ```
@@ -171,6 +173,7 @@ sudo chown -R $USER:$USER /var/log/snort
 ```
 ls -l /var/log/snort/alert
 ```
+![Screenshot 2024-07-24 155505](https://github.com/user-attachments/assets/1b22aaf4-05d3-4cb0-9361-60281ec0e801)
 
 #### 4. Start Snort:
 - Start Snort with the appropriate configuration. Make sure it uses the configuration file you modified:
@@ -208,7 +211,6 @@ python3 detect/monitor_logs.py
 ![Screenshot 2024-07-23 160445 - Copy](https://github.com/user-attachments/assets/826d5e1b-ccb6-4ef2-816d-55d361a86153)
 
 - This script will keep checking for the log file until it exists and then proceed to monitor it. If Snort is correctly configured and running, the script will eventually detect the log file and start printing new alerts.
-
 
 ## Respond
 
