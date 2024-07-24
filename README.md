@@ -19,7 +19,6 @@ This project demonstrates the implementation of the NIST Cybersecurity Framework
 
 #### 3. Detect (Intrusion Detection):
 - The `detect/monitor_logs.py` script monitors Snort logs for suspicious activity.
-- Snort configuration is set up in `detect/snort.conf`.
 
 #### 4. Respond (Incident Response):
 - The `respond/incident_response.py` script isolates affected machines by modifying `iptables` rules.
