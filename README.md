@@ -1,6 +1,7 @@
 # NIST Cybersecurity Framework Project
 
-This project demonstrates the implementation of the NIST Cybersecurity Framework using open-source tools on Ubuntu.
+This project demonstrates the implementation of the NIST Cybersecurity Framework using open-source tools on Ubuntu.<br>
+<a href="https://github.com/MenakaGodakanda/NIST_CSF_Project/blob/main/Project_Description.md">Project Description</a>
 
 ## Overview
 <img width="1266" alt="Screenshot 2024-07-23 at 5 38 47 PM" src="https://github.com/user-attachments/assets/3a955ff3-a7cf-4c44-b387-97c73c16fd91">
@@ -141,14 +142,14 @@ python3 protect/access_control.py
 ### Intrusion Detection
 
 #### 1. Verify Snort Installation:
-- Ensure Snort is installed and running correctly. If not installed, use the following command:
+- Ensure `snort` is installed and running correctly. If not installed, use the following command:
 ```
 sudo apt update
 sudo apt install snort
 ```
 
 #### 2. Configure Snort Logging:
-- Ensure Snort is configured to log alerts to /var/log/snort/alert. Edit the Snort configuration file (usually located at /etc/snort/snort.conf):
+- Ensure `snort` is configured to log alerts to `/var/log/snort/alert`. Edit the Snort configuration file (usually located at `/etc/snort/snort.conf`):
 ```
 sudo nano /etc/snort/snort.conf
 ```
@@ -159,7 +160,7 @@ output alert_fast: /var/log/snort/alert
 ![Screenshot 2024-07-24 155237](https://github.com/user-attachments/assets/2dae2862-8a99-4e7e-bc66-73b9523a20e9)
 
 #### 3. Create and Set Permissions for Log Directory:
-- Ensure the directory /var/log/snort exists and has the correct permissions:
+- Ensure the directory `/var/log/snort` exists and has the correct permissions:
 ```
 sudo mkdir -p /var/log/snort
 sudo chown snort:snort /var/log/snort
@@ -176,7 +177,7 @@ ls -l /var/log/snort/alert
 ![Screenshot 2024-07-24 155505](https://github.com/user-attachments/assets/1b22aaf4-05d3-4cb0-9361-60281ec0e801)
 
 #### 4. Start Snort:
-- Start Snort with the appropriate configuration. Make sure it uses the configuration file you modified:
+- Start `snort` with the appropriate configuration. Make sure it uses the configuration file you modified:
 ```
 sudo snort -A fast -c /etc/snort/snort.conf -i enp0s3
 ```
@@ -185,7 +186,7 @@ sudo snort -A fast -c /etc/snort/snort.conf -i enp0s3
 - Replace `enp0s3` with the appropriate network interface on your system.
 
 #### 5. Generate Test Alerts:
-- Generate some test traffic to ensure Snort logs alerts. Use tools like `Nmap` to scan your network, which should trigger Snort alerts:
+- Generate some test traffic to ensure `snort` logs alerts. Use tools like `nmap` to scan your network, which should trigger `snort` alerts:
 ```
 sudo apt install nmap
 sudo nmap -v -sS 192.168.1.0/24  # Replace with your network range
@@ -200,17 +201,17 @@ cat /var/log/snort/alert
 ```
 ![Screenshot 2024-07-24 153835](https://github.com/user-attachments/assets/a3bffa68-03d2-43c0-be54-8a067cced088)
 
-- If the file exists and contains data, your Snort configuration is working correctly.
+- If the file exists and contains data, your `snort` configuration is working correctly.
 
 #### 7. Running Data Protection Script
 - Script: `detect/monitor_logs.py`
-- This script monitors Snort logs for intrusion detection alerts. Run the script:
+- This script monitors `snort` logs for intrusion detection alerts. Run the script:
 ```
 python3 detect/monitor_logs.py
 ```
 ![Screenshot 2024-07-23 160445 - Copy](https://github.com/user-attachments/assets/826d5e1b-ccb6-4ef2-816d-55d361a86153)
 
-- This script will keep checking for the log file until it exists and then proceed to monitor it. If Snort is correctly configured and running, the script will eventually detect the log file and start printing new alerts.
+- This script will keep checking for the log file until it exists and then proceed to monitor it. If `snort` is correctly configured and running, the script will eventually detect the log file and start printing new alerts.
 
 ## Respond
 
@@ -246,7 +247,7 @@ sudo chmod 755 /home/data
 echo "This is a test file" > /home/data/testfile1.txt
 echo "This is another test file" > /home/data/testfile2.txt
 ```
-- Verify Directory and Files:
+- Verify directory and files:
 ```
 ls -ld /home/data
 ls -l /home/data
@@ -255,7 +256,8 @@ ls -l /home/data
 
 #### 2. Running the Backup and Restore Script:
 - Script: `recover/backup_restore.py`
-- This script backs up and restores data using `shutil`. Run the script:
+- This script backs up and restores data using `shutil`.
+- Run the script:
 ```
 python3 recover/backup_restore.py
 ```
