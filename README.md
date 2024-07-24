@@ -101,12 +101,15 @@ python3 protect/access_control.py
   ```
   ls -l sensitive_data.txt
   ```
+  ![Screenshot 2024-07-24 152724](https://github.com/user-attachments/assets/6ecef176-7e37-49fb-b62b-3e712d117952)
 
 #### 2. GPG Key Creation
   - Generate a GPG Key:
   ```
   gpg --full-generate-key
   ```
+  ![Screenshot 2024-07-24 153040](https://github.com/user-attachments/assets/0c8315d3-5185-4a02-915b-6b8ac2dcbed3)
+
   - Follow the prompts to generate your key. Use the same email address you will use in the script as the recipient.
   - Export the GPG Key:
   ```
@@ -174,6 +177,8 @@ ls -l /var/log/snort/alert
 ```
 sudo snort -A fast -c /etc/snort/snort.conf -i enp0s3
 ```
+![Screenshot 2024-07-24 153432](https://github.com/user-attachments/assets/274d9fca-83d2-4713-bef8-83407e6a02c4)
+
 - Replace `enp0s3` with the appropriate network interface on your system.
 
 #### 5. Generate Test Alerts:
@@ -182,6 +187,7 @@ sudo snort -A fast -c /etc/snort/snort.conf -i enp0s3
 sudo apt install nmap
 sudo nmap -v -sS 192.168.1.0/24  # Replace with your network range
 ```
+![Screenshot 2024-07-24 153602](https://github.com/user-attachments/assets/f086c558-ef67-49cf-bb49-d1e9d34d3720)
 
 #### 6. Verify Snort Logs:
 - Check if the alert file is created and populated with data:
@@ -189,10 +195,11 @@ sudo nmap -v -sS 192.168.1.0/24  # Replace with your network range
 ls -l /var/log/snort/alert
 cat /var/log/snort/alert
 ```
+![Screenshot 2024-07-24 153835](https://github.com/user-attachments/assets/a3bffa68-03d2-43c0-be54-8a067cced088)
+
 - If the file exists and contains data, your Snort configuration is working correctly.
 
 #### 7. Running Data Protection Script
-xx - Snort configuration: `detect/snort.conf`
 - Script: `detect/monitor_logs.py`
 - This script monitors Snort logs for intrusion detection alerts. Run the script:
 ```
@@ -235,6 +242,7 @@ echo "This is another test file" > /home/data/testfile2.txt
 ls -ld /home/data
 ls -l /home/data
 ```
+![Screenshot 2024-07-24 154152](https://github.com/user-attachments/assets/2241d664-7509-46f0-815b-e6dd9581c25f)
 
 #### 2. Running the Backup and Restore Script:
 - Script: `recover/backup_restore.py`
@@ -250,12 +258,14 @@ python3 recover/backup_restore.py
 ```
 ls -l /home/backup
 ```
+![Screenshot 2024-07-24 154333](https://github.com/user-attachments/assets/2bb99e63-d2ab-45d5-a129-db6dbec80409)
 
 2. Check the Restore Directory:
 - Verify that the restoration was completed successfully:
 ```
 ls -l /home/restore
 ```
+![Screenshot 2024-07-24 154338](https://github.com/user-attachments/assets/a455253b-b5eb-4342-935c-70b495b7849e)
 
 ## Project Structure
 ```
