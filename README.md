@@ -89,22 +89,113 @@ python3 protect/access_control.py
 
 ### Data Protection
 
-- Script: `protect/data_encryption.py`
-- This script encrypts sensitive data using `gnupg`. Run the script:
-```
-python3 protect/data_encryption.py
-```
+#### 1. Create a Sensitive File
+  - Create the `sensitive_data.txt` file:
+  ```
+  echo "This is some sensitive data that needs to be encrypted." > sensitive_data.txt
+  ```
+  - Verify the file exists:
+  ```
+  ls -l sensitive_data.txt
+  ```
+
+#### 2. GPG Key Creation
+  - Generate a GPG Key:
+  ```
+  gpg --full-generate-key
+  ```
+  - Follow the prompts to generate your key. Use the same email address you will use in the script as the recipient.
+  - Export the GPG Key:
+  ```
+  gpg --export -a "your_email@example.com" > public.key
+  ```
+  - Replace "your_email@example.com" with your actual email address.
+
+  - Use the Correct Recipient:
+  - Ensure the recipient in your `data_encryption.py` script matches the email or key ID of the generated GPG key:
+  ```
+  recipient = 'your_email@example.com'
+  ```
+  - Check GnuPG Configuration:
+  ```
+  gpg --list-keys
+  ```
+
+#### 3. Running Data Protection Script
+  - Script: `protect/data_encryption.py`
+  - This script encrypts sensitive data using `gnupg`.
+  - Run the script:
+  ```
+  python3 protect/data_encryption.py
+  ```
 
 ## Detect
 
 ### Intrusion Detection
 
-- Snort configuration: `detect/snort.conf`
+#### 1. Verify Snort Installation:
+- Ensure Snort is installed and running correctly. If not installed, use the following command:
+```
+sudo apt update
+sudo apt install snort
+```
+
+#### 2. Configure Snort Logging:
+- Ensure Snort is configured to log alerts to /var/log/snort/alert. Edit the Snort configuration file (usually located at /etc/snort/snort.conf):
+```
+sudo nano /etc/snort/snort.conf
+```
+- Ensure the following line is uncommented or added to log alerts to the specified file:
+```
+output alert_fast: /var/log/snort/alert
+```
+#### 3. Create and Set Permissions for Log Directory:
+- Ensure the directory /var/log/snort exists and has the correct permissions:
+```
+sudo mkdir -p /var/log/snort
+sudo chown snort:snort /var/log/snort
+```
+- Change permissions of the log directory and files so that the user can read the log file.:
+```
+sudo chmod -R 755 /var/log/snort
+sudo chown -R $USER:$USER /var/log/snort
+```
+- Verify the permissions of the alert file to ensure they are correctly set:
+```
+ls -l /var/log/snort/alert
+```
+
+#### 4. Start Snort:
+- Start Snort with the appropriate configuration. Make sure it uses the configuration file you modified:
+```
+sudo snort -A fast -c /etc/snort/snort.conf -i enp0s3
+```
+- Replace `enp0s3` with the appropriate network interface on your system.
+
+#### 5. Generate Test Alerts:
+- Generate some test traffic to ensure Snort logs alerts. Use tools like `Nmap` to scan your network, which should trigger Snort alerts:
+```
+sudo apt install nmap
+sudo nmap -v -sS 192.168.1.0/24  # Replace with your network range
+```
+
+#### 6. Verify Snort Logs:
+- Check if the alert file is created and populated with data:
+```
+ls -l /var/log/snort/alert
+cat /var/log/snort/alert
+```
+- If the file exists and contains data, your Snort configuration is working correctly.
+
+#### 7. Running Data Protection Script
+xx - Snort configuration: `detect/snort.conf`
 - Script: `detect/monitor_logs.py`
 - This script monitors Snort logs for intrusion detection alerts. Run the script:
 ```
 python3 detect/monitor_logs.py
 ```
+- This script will keep checking for the log file until it exists and then proceed to monitor it. If Snort is correctly configured and running, the script will eventually detect the log file and start printing new alerts.
+
 
 ## Respond
 
@@ -120,10 +211,42 @@ python3 respond/incident_response.py
 
 ### Backup and Restore
 
+#### 1. Create the Directory:
+- Create the directory `/home/data` if it doesn't exist with proper permissions:
+```
+mkdir -p /home/data
+sudo chown $USER:$USER /home/data
+sudo chmod 755 /home/data
+```
+- You can also add some test files to this directory to simulate data:
+```
+echo "This is a test file" > /home/data/testfile1.txt
+echo "This is another test file" > /home/data/testfile2.txt
+```
+- Verify Directory and Files:
+```
+ls -ld /home/data
+ls -l /home/data
+```
+
+#### 2. Running the Backup and Restore Script:
 - Script: `recover/backup_restore.py`
 - This script backs up and restores data using `shutil`. Run the script:
 ```
 python3 recover/backup_restore.py
+```
+
+#### 3. Verifying the Backup and Restore
+1. Check the Backup Directory:
+- Verify that the backup was created correctly:
+```
+ls -l /home/backup
+```
+
+2. Check the Restore Directory:
+- Verify that the restoration was completed successfully:
+```
+ls -l /home/restore
 ```
 
 ## Project Structure
