@@ -218,9 +218,18 @@ python3 detect/monitor_logs.py
 
 - Script: `respond/incident_response.py`
 - This script isolates affected machines by modifying `iptables` rules.
-- Identify the IP address of affected machines and insert the below lines in the `incident_response.py` script.
+- Detail analysis of snort alerts and isolation recommendation are provided in `Project_Description.md`.
+- Insert the below lines in the `incident_response.py` script to isolate identified IP addresses.
 ```
+ip_address = '192.168.1.4'    # IP address of affected machine
+isolate_machine(ip_address)
+print(f'Machine {ip_address} isolated')
+
 ip_address = '192.168.1.7'    # IP address of affected machine
+isolate_machine(ip_address)
+print(f'Machine {ip_address} isolated')
+
+ip_address = '192.168.1.9'    # IP address of affected machine
 isolate_machine(ip_address)
 print(f'Machine {ip_address} isolated')
 ```
@@ -228,7 +237,7 @@ print(f'Machine {ip_address} isolated')
 ```
 python3 respond/incident_response.py
 ```
-![Screenshot 2024-07-24 032656](https://github.com/user-attachments/assets/7210cfa2-dc0c-46c1-ba10-140c23c556a2)
+![Screenshot 2024-07-25 165327](https://github.com/user-attachments/assets/f52b2c14-157c-4323-b9b5-88ed76095f35)
 
 ## Recover
 
